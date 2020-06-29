@@ -6,6 +6,7 @@ import { loadData, startClock, tickClock } from "../actions";
 // import Page from "../components/page";
 import Order from "../src/Container/Order";
 import AuthRequire from "../src/Hoc/Auth/index";
+import "../src/Styles/main.scss";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -19,9 +20,12 @@ const Index = () => {
     dispatch(startClock());
   }, [dispatch]);
 
-  const temp = AuthRequire(Order);
-  debugger
-  return <div>{temp}</div>;
+  debugger;
+  return (
+    <div className="example">
+      Hello
+    </div>
+  );
 };
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
@@ -35,4 +39,4 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   await store.sagaTask.toPromise();
 });
 
-export default Index;
+export default AuthRequire(Index);

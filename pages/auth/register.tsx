@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import MainAuth from './Main/index';
-// import './style.module.scss';
-
+import RegisterForm from '../../src/Container/Register/index'
+import Background from '../../src/Hoc/Background/index';
 const Register: React.SFC<any> = (props) => {
 	// const logged = useSelector<IApplicationState, AuthState>(state => state.auth);
 	const [RegisterUi, setRegisterUi] = useState(false);
@@ -13,26 +12,9 @@ const Register: React.SFC<any> = (props) => {
 	};
 
 	return (
-		<div>
-			<div className='image-background'>
-				<picture>
-					<div className='my_img'></div>
-				</picture>
-				<div>
-					register
-				</div>
-				{/* <MainAuth callBackChangeState={handleShow} /> */}
-				{/* <Route
-					exact
-					path={'/auth'}
-					component={() => (
-						<MainAuth {...props} callBackChangeState={handleShow} handleSkipAuth={handleSkipAuth} />
-					)}
-				/>
-				<Route exact path='/auth/test' component={Register} /> */}
-			</div>
-
-		</div>
+		<Background active>
+			<RegisterForm />
+		</Background>
 	);
 };
 export default Register;

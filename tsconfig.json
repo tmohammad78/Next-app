@@ -13,10 +13,7 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": false,
     "skipLibCheck": true,
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "noImplicitReturns": true,
     "noEmit": true,
     "noImplicitThis": true,
@@ -36,17 +33,10 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@components/*": [
-        "./components/*"
-      ]
+      "@components/*": ["./components/*"],
+      "@Hoc/*": ["./src/Hoc"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

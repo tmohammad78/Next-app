@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Register from './register';
-import Router from 'next/router'
-// import './style.module.scss';
+// import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '../../components/Buttons/Button';
+// import Register from './register';
+import Router from 'next/router';
+import Auth from 'src/Container/auth';
+import Background from '../../src/Hoc/Background/index';
 
 const AuthPage: React.SFC<any> = (props) => {
     // const logged = useSelector<IApplicationState, AuthState>(state => state.auth);
@@ -20,28 +22,12 @@ const AuthPage: React.SFC<any> = (props) => {
         // }
     })
     return (
-        <div>
-            <div className='image-background'>
-                <picture>
-                    <div className='my_img'></div>
-                </picture>
-                <div>
-                    lvnjbfjb
-				</div>
+        <>
+            <Background>
+                <Auth />
+            </Background>
+        </>
 
-                <Register />
-                {/* <MainAuth callBackChangeState={handleShow} /> */}
-                {/* <Route
-					exact
-					path={'/auth'}
-					component={() => (
-						<MainAuth {...props} callBackChangeState={handleShow} handleSkipAuth={handleSkipAuth} />
-					)}
-				/>
-				<Route exact path='/auth/test' component={Register} /> */}
-            </div>
-
-        </div>
     );
 };
 export default AuthPage;
