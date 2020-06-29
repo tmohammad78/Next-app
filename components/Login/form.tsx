@@ -54,6 +54,7 @@ const FormLogin = ({ submitAction }: Props) => {
 		>
 			{({ isSubmitting, values }) => (
 				<Form className='form'>
+					<Field name='name' type='text' label='Name' component={InputForm} />
 					<Field name='email' type='email' label='Email' component={InputForm} />
 					<Field name='password' type='password' label='password' component={InputForm} />
 					<Field

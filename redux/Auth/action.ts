@@ -1,14 +1,21 @@
 
-import { REGISTERUSER } from './actionTypes';
+import { REGISTERUSER , SUCCESSREGISTER ,LOGINUSER} from './actionTypes';
 
 export const registerUser = (payload) => ({
 	type: REGISTERUSER,
 	payload
 })
 
+export const registerSuccess = () => ({
+	type:SUCCESSREGISTER,
+})
 
-
-
+export const login = (data) => {
+	return {
+		type:LOGINUSER,
+		data
+	}
+}
 
 
 

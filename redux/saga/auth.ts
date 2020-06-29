@@ -1,17 +1,28 @@
-import { all, takeLatest, call } from "redux-saga/effects";
+import { all, takeLatest, call, put } from "redux-saga/effects";
+import axios from 'axios';
+import { registerSuccess , login } from '../Auth/action';
 import { REGISTERUSER } from '../Auth/actionTypes';
 
-function registerCall(payload) {
-
-    console.log(payload)
+function registerCall(data) {
+   return axios.post('http://localhost:8080/user-api/user',{
+        name:data.name,
+        email:data.email,
+        password:data.password,
+        phone:data.phonenumber
+    })
+    .then((res)=>{
+        return res
+    })
+    .catch(err => console.log(err))
+    // console.log(data)
 }
 function* registerUser(payload) {
     let data = payload;
-    console.log(payload);
-
     try {
-        let response = yield call(registerCall, payload)
+        let response = yield call(registerCall, payload.payload)
         console.log(response)
+        yield put(registerSuccess());
+        yield put(login(response.data))
     } catch{
 
     }

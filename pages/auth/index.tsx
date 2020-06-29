@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../../components/Buttons/Button';
 // import Register from './register';
 import Router from 'next/router';
-import Auth from 'src/Container/auth';
+import Auth from '../../src/Container/Auth/index';
 import Background from '../../src/Hoc/Background/index';
 
 const AuthPage: React.SFC<any> = (props) => {

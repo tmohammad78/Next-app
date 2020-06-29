@@ -1,11 +1,41 @@
+import { REGISTERUSER , SUCCESSREGISTER ,LOGINUSER} from './actionTypes';
 
-import { actionType } from './actionTypes';
-
-const Reducer = (state, action) => {
-
-    // switch (action.type) {
-    //     case 
-    // }
+interface IAuthState {
+    message?:string,
+    name:string,
+    email:string,
+    phone:string,
+    token:string
 }
 
-export default Reducer;
+const initialState : IAuthState = {
+    message : '',
+    name:'',
+    email:'',
+    phone:'',
+    token:''
+}
+
+const AuthReducer = (state = initialState, action) => {
+
+    switch (action.type){
+        case SUCCESSREGISTER:
+            return {
+                ...state,
+                message:'successfull'
+            }
+        case LOGINUSER : 
+        const { user , token} = action.data;
+        return {
+            ...state,
+            name:user.name,
+            email:user.email,
+            phone:user.phone,
+            token : token
+        }
+        default :
+            return;
+    }
+}
+
+export default AuthReducer;
