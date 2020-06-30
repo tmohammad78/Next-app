@@ -1,4 +1,4 @@
-import { REGISTERUSER , SUCCESSREGISTER ,LOGINUSER} from './actionTypes';
+import { REGISTERUSER , SUCCESSREGISTER ,LOGINUSER, GETTOKENSTORAGE} from './actionTypes';
 
 interface IAuthState {
     message?:string,
@@ -17,7 +17,6 @@ const initialState : IAuthState = {
 }
 
 const AuthReducer = (state = initialState, action) => {
-
     switch (action.type){
         case SUCCESSREGISTER:
             return {
@@ -33,8 +32,13 @@ const AuthReducer = (state = initialState, action) => {
             phone:user.phone,
             token : token
         }
+        case GETTOKENSTORAGE:
+            return {
+                ...state,
+                token:action.tokenStorage
+            }
         default :
-            return;
+            return state ;
     }
 }
 

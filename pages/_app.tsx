@@ -1,14 +1,15 @@
 import { wrapper } from "../redux/store";
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
+// import with  from 'next-redux-saga';
 import {makeStore as store} from '../redux/store';
 import "../src/Styles/main.scss";
 
 function App({ Component, pageProps , store}:any) {
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
     <Component {...pageProps} />
-    </Provider>
+    // </Provider>
   );
 }
 

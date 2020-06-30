@@ -1,5 +1,6 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
 import axios from 'axios';
+import Router from 'next/router';
 import { registerSuccess , login } from '../Auth/action';
 import { REGISTERUSER } from '../Auth/actionTypes';
 
@@ -22,7 +23,8 @@ function* registerUser(payload) {
         let response = yield call(registerCall, payload.payload)
         console.log(response)
         yield put(registerSuccess());
-        yield put(login(response.data))
+        yield put(login(response.data));
+        // response.data.token  ? Router.push('/') : null   
     } catch{
 
     }

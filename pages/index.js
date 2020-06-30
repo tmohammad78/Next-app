@@ -5,22 +5,22 @@ import { wrapper } from "../store";
 import { loadData, startClock, tickClock } from "../actions";
 // import Page from "../components/page";
 import Order from "../src/Container/Order";
+import { checkToken } from '../redux/Auth/action';
 import AuthRequire from "../src/Hoc/Auth/index";
 import "../src/Styles/main.scss";
 
 const Index = () => {
   const dispatch = useDispatch();
 
+
   // useEffect(() => {
   //   if (!logged) {
   //     Router.push("/auth");
   //   }
   // });
-  useEffect(() => {
-    dispatch(startClock());
-  }, [dispatch]);
-
-  debugger;
+  // useEffect(() => {
+  //   dispatch(startClock());
+  // }, [dispatch]);
   return (
     <div className="example">
       Hello
@@ -28,15 +28,15 @@ const Index = () => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  store.dispatch(tickClock(false));
+// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+//   store.dispatch(tickClock(false));
 
-  if (!store.getState().placeholderData) {
-    store.dispatch(loadData());
-    store.dispatch(END);
-  }
+//   if (!store.getState().placeholderData) {
+//     store.dispatch(loadData());
+//     store.dispatch(END);
+//   }
 
-  await store.sagaTask.toPromise();
-});
+//   await store.sagaTask.toPromise();
+// });
 
 export default AuthRequire(Index);

@@ -1,5 +1,5 @@
 
-import { REGISTERUSER , SUCCESSREGISTER ,LOGINUSER} from './actionTypes';
+import { REGISTERUSER , SUCCESSREGISTER ,LOGINUSER , GETTOKENSTORAGE} from './actionTypes';
 
 export const registerUser = (payload) => ({
 	type: REGISTERUSER,
@@ -10,7 +10,17 @@ export const registerSuccess = () => ({
 	type:SUCCESSREGISTER,
 })
 
+export const checkToken = () => {
+	const tokenStorage  = JSON.parse(window.localStorage.getItem('token'));
+	console.log(tokenStorage)
+	return {
+		type:GETTOKENSTORAGE,
+		tokenStorage
+	}
+}
+
 export const login = (data) => {
+	window.localStorage.setItem('token',JSON.stringify(data.token))
 	return {
 		type:LOGINUSER,
 		data
