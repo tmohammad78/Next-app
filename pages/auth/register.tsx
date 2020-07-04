@@ -15,7 +15,6 @@ const Register: React.SFC<any> = (props) => {
 
 	useEffect(() => {
 		const token = Cookies.get('token');
-		debugger
 		token ? Router.push('/') : null
 	}, [token])
 

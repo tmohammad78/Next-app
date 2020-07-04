@@ -26,12 +26,11 @@ const FormLogin = ({ submitAction }: Props) => {
 
 	const InputForm = ({ field, className, meta, form: { touched, errors }, ...props }: IInputForm) => {
 		return (
-			<Fragment>
 				<div className='inputPack  clearfix'>
-					<Input {...field} {...props} />
+					<Input autoComplete={false} {...field} {...props} />
 					{errors[field.name] && <div className='errorMessage'>{errors[field.name]}</div>}
 				</div>
-			</Fragment>
+
 		);
 	};
 
@@ -52,7 +51,7 @@ const FormLogin = ({ submitAction }: Props) => {
 				}, 400);
 			}}
 		>
-			{({ isSubmitting, values }) => (
+			{({ isSubmitting, values , isValid , dirty }) => (
 				<Form className='form'>
 					<Field name='name' type='text' label='Name' component={InputForm} />
 					<Field name='email' type='email' label='Email' component={InputForm} />
@@ -62,15 +61,17 @@ const FormLogin = ({ submitAction }: Props) => {
 						autocompelete={true}
 						type='text'
 						label='Mobile'
+						minlength="11"
+						maxlenght="11"
 						component={InputForm}
-						placeholder='09375050156'
 					/>
 					<Button
 						type='submit'
 						// onClick={test}
 						className='registerBtn'
 						onClick={() => submitForm(values)}
-						disabled={isSubmitting}
+						disabled={!(isValid && dirty)}
+						
 					>
 						<i className='fo fo-angle-left' />
 						<span>دریافت کد</span>

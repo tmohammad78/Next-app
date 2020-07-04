@@ -21,7 +21,10 @@ const ButtonBase = styled.button`
 
   &[disabled] {
     cursor: default;
-    background-color: #eeee;
+    background-color: #939393;
+    &:hover{
+      background-color: #939393 !important ;
+    }
   }
   &:focus {
     -webkit-appearance: none;

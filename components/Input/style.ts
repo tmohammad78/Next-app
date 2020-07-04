@@ -8,7 +8,8 @@ export const InputStyle = styled.input`
   font-size: 20px;
   border: none;
   width: 100%;
-  color: ${({ theme }) => theme.inputText};
+  /* color: ${({ theme }) => theme.inputText}; */
+  color:white;
   background-color: transparent;
   &:focus {
     outline: none;
@@ -25,6 +26,17 @@ export const InputStyle = styled.input`
   -webkit-autofill:hover -webkit-autofill:focus {
     background-color: transparent !important;
   }
+  /* Change autocomplete styles in WebKit */
+&:-webkit-autofill,
+&:-webkit-autofill:hover, 
+&:-webkit-autofill:focus,
+&:-internal-autofill-selected 
+ {
+  background-color:transparent;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(102, 73, 0, 0.53) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 `;
 
 export const ParentInput = styled.div`
@@ -39,10 +51,10 @@ export const ParentInput = styled.div`
 
   label {
     position: absolute;
-    top: 50%;
+    top: 80%;
     user-select: none;
     pointer-events: none;
-    transform: translateY(-50%);
+    transform: translateY(-114%);
     left: 10px;
     color: white;
     transition: all 0.3s ease-out;
