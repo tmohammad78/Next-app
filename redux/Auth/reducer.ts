@@ -5,7 +5,8 @@ interface IAuthState {
     name:string,
     email:string,
     phone:string,
-    token:string
+    token:string,
+    authenticated:boolean
 }
 
 const initialState : IAuthState = {
@@ -13,7 +14,8 @@ const initialState : IAuthState = {
     name:'',
     email:'',
     phone:'',
-    token:''
+    token:'',
+    authenticated:false
 }
 
 const AuthReducer = (state = initialState, action) => {
@@ -30,12 +32,17 @@ const AuthReducer = (state = initialState, action) => {
             name:user.name,
             email:user.email,
             phone:user.phone,
-            token : token
+            token : token,
+            authenticated:true
         }
         case GETTOKENSTORAGE:
+            const { name,email,authenticated } = action.user
             return {
                 ...state,
-                token:action.tokenStorage
+                token:action.user.token,
+                name,
+                email,
+                authenticated
             }
         default :
             return state ;

@@ -14,8 +14,13 @@ const bindMiddleware = (middleware) => {
 }
 
 export const makeStore = (context) => {
+  if (process.browser) {
+    context = JSON.parse(window.localStorage.getItem('token')) || context
+    // client-side-only code
+  }
+  console.log(context)
   const sagaMiddleware = createSagaMiddleware()
-  const store = createStore(rootReducer, bindMiddleware([sagaMiddleware]))
+  const store = createStore(rootReducer,context, bindMiddleware([sagaMiddleware]))
 
   store.sagaTask = sagaMiddleware.run(rootSaga)
 

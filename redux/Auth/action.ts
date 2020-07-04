@@ -11,19 +11,28 @@ export const registerSuccess = () => ({
 })
 
 export const checkToken = () => {
-	const tokenStorage  = JSON.parse(window.localStorage.getItem('token'));
-	console.log(tokenStorage)
+	const user  = JSON.parse(window.localStorage.getItem('user')) || '';
+	console.log(user)
 	return {
 		type:GETTOKENSTORAGE,
-		tokenStorage
+		user
 	}
 }
 
 export const login = (data) => {
-	window.localStorage.setItem('token',JSON.stringify(data.token))
+
+	const localObject = {
+		token : data.token,
+		name:data.user.name,
+		email:data.user.email,
+		authenticated:true
+	}
+	window.localStorage.setItem('user',JSON.stringify(localObject))
+
 	return {
 		type:LOGINUSER,
-		data
+		data,
+		authenticated
 	}
 }
 
