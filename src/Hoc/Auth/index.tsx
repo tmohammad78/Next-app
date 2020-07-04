@@ -4,102 +4,35 @@ import Router , { useRouter } from "next/router";
 import { checkToken } from '../../../redux/Auth/action';
 import { request } from 'http';
 import {redirectToLogin} from './redirect';
-
+import Cookies from 'js-cookie';
 
 
 const PrivateRoute = ( ComposedComponent : any) => {
 
     const withComponent  =  (props: any) => {
-        const dispatch = useDispatch()
-        console.log(props)
-      //   const auth = useSelector<IApplicationState, AuthState>(state => state.auth);
-        const auth = useSelector(state => state.auth);
-        // React.useEffect(()=> {
-        //     dispatch(checkToken())
-        // },[])
-
-        const [logged, setLogged] = useState(false);
         const router = useRouter();
-        
-        // useEffect(() => {
-        //     console.log('auth',auth) 
-        //     if (auth.length > 3){
-        //         <ComposedComponent {...props} />
-        //     } else {
-        //         console.log(auth.length)
-        //         router.push("/auth");
-        //     }
-        // },[])
-        // if (auth.logged) {
-        //     return <ComposedComponent {...props} />
-        // }
-
-        // const handle = () =>{
-        //     debugger
-
-        //     }
-                return auth.authenticated ?  <ComposedComponent {...props} /> : null
+        const [loading,setLoading] = useState(true);
+        const auth = useSelector(state => state.auth);
+        useEffect(()=>{
+          async function checkToken (){
+            const token  = Cookies.get('token');
+            
+          if(!token){
+            setLoading(true)
+            router.push('/auth')
+          }else{
+            setLoading(false)
+          }
+        }
+        checkToken() 
+      },[])
+                return  loading  ? <div>...loadin</div> : <ComposedComponent {...props} /> 
     
         }
 
-    // withComponent.getInitialProps  = async (ctx:any) =>{
-    //     console.log('dd',ctx.req)
-    //     const token = false;
-    //     // token ? null :  redirectToLogin(ctx.res);
-    //     const initialProps = 'e'
-     
-    //     return initialProps;
-    // }
     return withComponent;
 }
 
 export default PrivateRoute;
 
 
-
-
-
-// const AuthRequire = ( ComposedComponent : any) => {
-//     return (props: any) => {
-//         const dispatch = useDispatch()
-//         // const auth = useSelector<IApplicationState, AuthState>(state => state.auth);
-//         const auth = useSelector(state => state.auth.token);
-//         React.useEffect(()=> {
-//             dispatch(checkToken())
-//         },[])
-
-//         const [logged, setLogged] = useState(false);
-//         const router = useRouter();
-        
-//         // useEffect(() => {
-//         //     console.log('auth',auth) 
-//         //     if (auth.length > 3){
-//         //         <ComposedComponent {...props} />
-//         //     } else {
-//         //         console.log(auth.length)
-//         //         router.push("/auth");
-//         //     }
-//         // },[])
-//         // if (auth.logged) {
-//         //     return <ComposedComponent {...props} />
-//         // }
-
-//         // const handle = () =>{
-//         //     debugger
-
-//         //     }
-//         useEffect(()=>{
-//             debugger
-//             if (auth.length > 3){
-//                 <ComposedComponent {...props} />
-//             } else {
-//                 console.log(auth.length)
-//                 router.push("/auth");
-//             }
-//         },[])
-    
-//             return   null;
-//     }
-// }
-
-// export default AuthRequire;

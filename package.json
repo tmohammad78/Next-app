@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/js-cookie": "^2.2.6",
     "@types/next-redux-saga": "^3.0.2",
     "@types/react-redux": "^7.1.9",
     "@types/styled-components": "^5.1.0",
@@ -15,6 +16,7 @@
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.2",
     "formik": "^2.1.4",
+    "js-cookie": "^2.2.1",
     "next": "9.4.2",
     "next-redux-saga": "^4.1.2",
     "next-redux-wrapper": "^6.0.2",

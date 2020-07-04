@@ -34,7 +34,8 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["./components/*"],
-      "@Hoc/*": ["./src/Hoc"]
+      "@Hoc/*": ["./src/Hoc"],
+      "@Api/*":["./src/Api"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

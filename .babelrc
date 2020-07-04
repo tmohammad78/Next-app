@@ -7,7 +7,8 @@
         "root": ["./"],
         "alias": {
           "@components": "./components",
-          "@Hoc": "./src/Hoc"
+          "@Hoc": "./src/Hoc",
+          "@Api": "./src/Api"
         }
       }
     ],

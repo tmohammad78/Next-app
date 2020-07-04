@@ -10,23 +10,10 @@ import "../src/Styles/main.scss";
 
 const Index = () => {
   const auth = useSelector(state => state.auth);
-  const dispatch = useDispatch()
-  // const router  = useRouter;
-  useEffect(()=>{
-   dispatch(checkToken()) 
-  },[])
-  useEffect(()=>{
-    // const auth = JSON.parse(window.localStorage.getItem('user'))
-    console.log(auth)
-    debugger
-    if(!auth.token)
-     Router.push('/auth')
-  })
+
   return (
       <div>
-        {
-            auth.token ? <div> HI {auth.name} </div> : null
-        }
+       Hi
       </div>
 
   );
@@ -34,4 +21,4 @@ const Index = () => {
 
 
 
-export default Index;
+export default PrivateRoute(Index);

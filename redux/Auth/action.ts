@@ -20,19 +20,9 @@ export const checkToken = () => {
 }
 
 export const login = (data) => {
-
-	const localObject = {
-		token : data.token,
-		name:data.user.name,
-		email:data.user.email,
-		authenticated:true
-	}
-	window.localStorage.setItem('user',JSON.stringify(localObject))
-
 	return {
 		type:LOGINUSER,
 		data,
-		authenticated
 	}
 }
 

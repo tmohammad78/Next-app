@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import RegisterForm from '../../src/Container/Register/index'
 import Background from '../../src/Hoc/Background/index';
-
+import Cookies from 'js-cookie';
 const Register: React.SFC<any> = (props) => {
 	// const logged = useSelector<IApplicationState, AuthState>(state => state.auth);
 	const [RegisterUi, setRegisterUi] = useState(false);
@@ -14,8 +14,10 @@ const Register: React.SFC<any> = (props) => {
 	};
 
 	useEffect(() => {
+		const token = Cookies.get('token');
+		debugger
 		token ? Router.push('/') : null
-	}, [])
+	}, [token])
 
 	return (
 		<Background active>

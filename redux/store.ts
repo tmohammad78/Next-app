@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { createWrapper } from 'next-redux-wrapper'
-
+import Cookies from 'js-cookie';
 import rootReducer from './reducers'
 import { rootSaga } from './saga/index'
 
@@ -14,11 +14,15 @@ const bindMiddleware = (middleware) => {
 }
 
 export const makeStore = (context) => {
-  if (process.browser) {
-    context = JSON.parse(window.localStorage.getItem('token')) || context
-    // client-side-only code
-  }
-  console.log(context)
+  // if (process.browser) {
+  //   context = JSON.parse(window.localStorage.getItem('token')) || context
+  //   // client-side-only code
+  // }
+  // console.log(context) 
+  context  = Cookies.get('token') || context;
+
+  console.log('redux ',context);
+
   const sagaMiddleware = createSagaMiddleware()
   const store = createStore(rootReducer,context, bindMiddleware([sagaMiddleware]))
 
